@@ -1,0 +1,10 @@
+pluginManagement {
+    repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven{ url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+        // maven { // The google mirror is less flaky than mavenCentral()
+        //     url "https://maven-central.storage-download.googleapis.com/maven2/"
+        // }
+        gradlePluginPortal()
+    }
+}
