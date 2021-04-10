@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.bluecc.packer.pipes";
+option java_outer_classname = "RulesProto";
+option objc_class_prefix = "RLP";
+
+package pipes;
+
+// Interface exported by the server.
+service RulePipes {
+  rpc fireRules(RuleDef) returns (stream PipeResponse) {}
+}
+
+message RuleDef {
+  // The name of the rule-def.
+  string name = 1;
+  string description = 2;
+  int32 priority=3;
+  string condition=4;
+  repeated string actions=5;
+
+}
+
+message RuleDefs {
+  repeated RuleDef rule_def = 1;
+}
+
+message PipeResponse{
+  string tag=1;
+  oneof value {
+    string string_value=2;
+    int64 int_value=3;
+    double real_value=4;
+    Strings strings=5;
+  }
+}
+
+message Strings{
+  repeated string value=1;
+}

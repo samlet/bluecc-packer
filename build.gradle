@@ -37,6 +37,9 @@ dependencies {
     implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
 
     implementation 'com.ea.async:ea-async:1.2.3'
+    implementation 'org.jeasy:easy-rules-core:4.1.0'
+    implementation 'org.jeasy:easy-rules-support:4.1.0'
+    implementation 'org.jeasy:easy-rules-mvel:4.1.0'
 
     compileOnly "org.apache.tomcat:annotations-api:6.0.53"
 
