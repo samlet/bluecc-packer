@@ -7,10 +7,26 @@ option objc_class_prefix = "RLP";
 
 package pipes;
 
+import "routines.proto";
+
 // Interface exported by the server.
 service RulePipes {
-  rpc fireRules(RuleDef) returns (stream PipeResponse) {}
+  rpc FireRules(FactsWithRuleNames) returns (stream routines.PipeResponse) {}
+  rpc FireRulesOneOff(FactsWithRuleDefs) returns (stream routines.PipeResponse) {}
+  rpc RegisterRule(RuleDef) returns (routines.Response) {}
+  rpc UnregisterRule(routines.StringValue) returns (routines.Response) {}
 }
+
+message FactsWithRuleNames{
+  routines.Strings rule_names=1;
+  routines.ValueObject facts=2;
+}
+
+message FactsWithRuleDefs{
+  RuleDefs rules=1;
+  routines.ValueObject facts=2;
+}
+
 
 message RuleDef {
   // The name of the rule-def.
@@ -24,18 +40,4 @@ message RuleDef {
 
 message RuleDefs {
   repeated RuleDef rule_def = 1;
-}
-
-message PipeResponse{
-  string tag=1;
-  oneof value {
-    string string_value=2;
-    int64 int_value=3;
-    double real_value=4;
-    Strings strings=5;
-  }
-}
-
-message Strings{
-  repeated string value=1;
 }

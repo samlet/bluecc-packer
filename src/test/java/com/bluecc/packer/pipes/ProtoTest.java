@@ -1,5 +1,6 @@
 package com.bluecc.packer.pipes;
 
+import com.bluecc.packer.routines.PipeResponse;
 import org.junit.Test;
 
 public class ProtoTest {
