@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.bluecc.packer.order";
+option java_outer_classname = "OrderProto";
+option objc_class_prefix = "ODP";
+
+package order;
+import "routines.proto";
+
+// Interface exported by the server.
+service Orders {
+  rpc GetConfig(routines.StringValue) returns (routines.ValueObject) {}
+}
+
+// Entity OrderHeader(order.order): Order Header
+message OrderHeader{
+  // keys
+  bytes order_id = 1;   // id
+  // fields
+  bytes order_type_id = 11;   // id
+  string order_name = 12;   // name
+  bytes external_id = 13;   // id
+  bytes sales_channel_enum_id = 14;   // id
+  string order_date = 15;   // date-time
+  bytes priority = 16;   // indicator
+  string entry_date = 17;   // date-time
+  string pick_sheet_printed_date = 18;   // date-time
+  bytes visit_id = 19;   // id
+  bytes status_id = 20;   // id
+  bytes created_by = 21;   // id-vlong
+  bytes first_attempt_order_id = 22;   // id
+  bytes currency_uom = 23;   // id
+  bytes sync_status_id = 24;   // id
+  bytes billing_account_id = 25;   // id
+  bytes origin_facility_id = 26;   // id
+  bytes web_site_id = 27;   // id
+  bytes product_store_id = 28;   // id
+  bytes agreement_id = 29;   // id
+  bytes terminal_id = 30;   // id-long
+  bytes transaction_id = 31;   // id-long
+  bytes auto_order_shopping_list_id = 32;   // id
+  bytes needs_inventory_issuance = 33;   // indicator
+  bytes is_rush_order = 34;   // indicator
+  bytes internal_code = 35;   // id-long
+  double remaining_sub_total = 36;   // currency-amount
+  double grand_total = 37;   // currency-amount
+  bytes is_viewed = 38;   // indicator
+  bytes invoice_per_shipment = 39;   // indicator
+}
+
+// Entity OrderItem(order.order): Order Item
+message OrderItem{
+  // keys
+  bytes order_id = 1;   // id
+  bytes order_item_seq_id = 2;   // id
+  // fields
+  bytes external_id = 11;   // id
+  bytes order_item_type_id = 12;   // id
+  bytes order_item_group_seq_id = 13;   // id
+  bytes is_item_group_primary = 14;   // indicator
+  bytes from_inventory_item_id = 15;   // id
+  bytes budget_id = 16;   // id
+  bytes budget_item_seq_id = 17;   // id
+  bytes product_id = 18;   // id
+  bytes supplier_product_id = 19;   // id-long
+  bytes product_feature_id = 20;   // id
+  bytes prod_catalog_id = 21;   // id
+  bytes product_category_id = 22;   // id
+  bytes is_promo = 23;   // indicator
+  bytes quote_id = 24;   // id
+  bytes quote_item_seq_id = 25;   // id
+  bytes shopping_list_id = 26;   // id
+  bytes shopping_list_item_seq_id = 27;   // id
+  bytes subscription_id = 28;   // id
+  bytes deployment_id = 29;   // id
+  double quantity = 30;   // fixed-point
+  double cancel_quantity = 31;   // fixed-point
+  double selected_amount = 32;   // fixed-point
+  double unit_price = 33;   // currency-precise
+  double unit_list_price = 34;   // currency-precise
+  double unit_average_cost = 35;   // currency-amount
+  double unit_recurring_price = 36;   // currency-amount
+  bytes is_modified_price = 37;   // indicator
+  bytes recurring_freq_uom_id = 38;   // id
+  string item_description = 39;   // description
+  string comments = 40;   // comment
+  bytes corresponding_po_id = 41;   // id
+  bytes status_id = 42;   // id
+  bytes sync_status_id = 43;   // id
+  string estimated_ship_date = 44;   // date-time
+  string estimated_delivery_date = 45;   // date-time
+  string auto_cancel_date = 46;   // date-time
+  string dont_cancel_set_date = 47;   // date-time
+  bytes dont_cancel_set_user_login = 48;   // id-vlong
+  string ship_before_date = 49;   // date-time
+  string ship_after_date = 50;   // date-time
+  string reserve_after_date = 51;   // date-time
+  string cancel_back_order_date = 52;   // date-time
+  bytes override_gl_account_id = 53;   // id
+  bytes sales_opportunity_id = 54;   // id
+  bytes change_by_user_login_id = 55;   // id-vlong
+}

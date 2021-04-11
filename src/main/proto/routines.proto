@@ -9,7 +9,12 @@ package routines;
 
 // Interface exported by the server.
 service Routines {
-  rpc GetConfig(StringValue) returns (ValueObject) {}
+  rpc GetConfig(ConfigItem) returns (ValueObject) {}
+}
+
+message ConfigItem{
+  string item=1;
+  string key=2;
 }
 
 message StringValue{
@@ -49,7 +54,6 @@ message PipeResponse{
   }
 }
 
-
 message Strings{
   repeated string value=1;
 }
@@ -60,3 +64,4 @@ message HeadersMessage {
   }
   map<string, Values> Metadata = 1;
 }
+
