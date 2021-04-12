@@ -4,6 +4,7 @@ build:
 
 rebuild:
     ./gradlew clean installDist
+    ls -alh build/libs/bluecc-packer.jar
     cp build/libs/bluecc-packer.jar {{env_var("HOME")}}/ofbiz/plugins/cc-pay/lib/
 
 hello:

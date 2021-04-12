@@ -10,6 +10,7 @@ package routines;
 // Interface exported by the server.
 service Routines {
   rpc GetConfig(ConfigItem) returns (ValueObject) {}
+  rpc CheckValue(ValueObject) returns (ValueObject) {}
 }
 
 message ConfigItem{
@@ -21,17 +22,35 @@ message StringValue{
   string value=1;
 }
 
+message Filter{
+  message Value {
+    oneof value {
+      string string_value=2;
+      int64 int_value=3;
+      double real_value=4;
+    }
+  }
+
+  map<string, Value> data = 1;
+}
+
 message ValueObject {
   message Value {
     oneof value {
       string string_value=2;
       int64 int_value=3;
       double real_value=4;
-      Strings strings=5;
+      bytes blob=5;
+      Strings strings=6;
+      ValueObject object=7;
     }
   }
 
   map<string, Value> data = 1;
+}
+
+message ValueObjects{
+  repeated ValueObject values=1;
 }
 
 message EmptyMessage {}
